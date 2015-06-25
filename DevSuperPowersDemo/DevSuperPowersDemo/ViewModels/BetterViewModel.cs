@@ -13,10 +13,10 @@ namespace DevSuperPowersDemo.ViewModels
     {
         private string _GetCoordsLabel;
         private string _AdressLabel;
-        //private Map _mapa;
-        Coordenadas Coords;
+        private string _GetAdressLabel;
 
-        // Declaro los entry como getters y setters para poder modificarlos       
+        Coordenadas Coords;
+    
         public string MyAdress { get; set; }        
 
         public string GetCoordsLabel
@@ -39,17 +39,26 @@ namespace DevSuperPowersDemo.ViewModels
             }
         }
 
+        public string GetAdressLabel
+        {
+            get { return _GetAdressLabel; }
+            set
+            {
+                _GetAdressLabel = value;
+                OnPropertyChanged("GetAdressLabel");
+            }
+        }        
+
         public ICommand GetCoords { get; set; }
-        //public ICommand ShowAdress { get; set; } 
+        public ICommand GetAdress { get; set; } 
 
         public BetterViewModel()
         {            
             Coords = new Coordenadas();
             MyAdress = "Enter your adress here";
-           // MyMap = new Map();
 
             GetCoords = new Command(GetCoordsEvent);
-            //ShowAdress = new Command(GetandShowAdress);
+            GetAdress = new Command(GetandShowAdress);
         }
 
         private async void GetCoordsEvent()
@@ -58,11 +67,11 @@ namespace DevSuperPowersDemo.ViewModels
             GetCoordsLabel = "You're on " + rta;
         }
 
-        //private async void GetandShowAdress()
-        //{
-        //    await Coords.GetDireccion(MyAdress.ToString(), MyMap);
-        //    AdressLabel = "You're looking for ";
-        //}
+        private async void GetandShowAdress()
+        {
+            var rta = await Coords.ShowMyAdress();
+            GetAdressLabel = "You're looking for " + rta;
+        }
 
         #region INPC
         public void OnPropertyChanged(string propertyName)

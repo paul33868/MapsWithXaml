@@ -11,5 +11,8 @@
   <StackLayout VerticalOptions="Center">
     <Label Text="{Binding GetCoordsLabel}" VerticalOptions="Center" HorizontalOptions="Center" />
     <Button Text="Get coords" Command="{Binding GetCoords}"/>
+    
+    <Label Text="{Binding GetAdressLabel}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Button Text="Get Direction" Command="{Binding GetAdress}"/>
   </StackLayout>
 </ContentPage>
