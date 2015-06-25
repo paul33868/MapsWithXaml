@@ -35,6 +35,26 @@ namespace DevSuperPowersDemo.Models
             return "Lat" + position.Latitude.ToString() + "Long" + position.Longitude.ToString();
         }
 
+        public async Task<List<string>> GetListado()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 5;
+            var position = await locator.GetPositionAsync(timeout: 10000);
+
+            var pos = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude);
+
+            var locationAddress = (await (new Geocoder()).GetAddressesForPositionAsync(pos));
+
+            List<string> lista = new List<string>();
+
+            foreach (var p in locationAddress)
+            {
+                lista.Add(p.ToString());
+            }
+
+            return lista;
+        }
+
         public async Task GetDireccion(string addressQuery, Map map)
         {
             var positions = (await (new Geocoder()).GetPositionsForAddressAsync(addressQuery)).ToList();

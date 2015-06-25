@@ -14,10 +14,24 @@ namespace DevSuperPowersDemo.ViewModels
         private string _GetCoordsLabel;
         private string _AdressLabel;
         private string _GetAdressLabel;
+        private List<string> _LvLista; 
 
         Coordenadas Coords;
     
-        public string MyAdress { get; set; }        
+        public string MyAdress { get; set; }
+
+        public List<string> LvDatos
+        {
+            get
+            {
+                return _LvLista;
+            }
+            set
+            {
+                _LvLista = value;
+                OnPropertyChanged("LvDatos");
+            }
+        }
 
         public string GetCoordsLabel
         {
@@ -50,7 +64,8 @@ namespace DevSuperPowersDemo.ViewModels
         }        
 
         public ICommand GetCoords { get; set; }
-        public ICommand GetAdress { get; set; } 
+        public ICommand GetAdress { get; set; }
+        public ICommand Rellenador { get; set; }
 
         public BetterViewModel()
         {            
@@ -59,6 +74,13 @@ namespace DevSuperPowersDemo.ViewModels
 
             GetCoords = new Command(GetCoordsEvent);
             GetAdress = new Command(GetandShowAdress);
+            Rellenador = new Command(GetRellenar);
+        }
+
+        private async void GetRellenar()
+        {
+            var listado = await Coords.GetListado();
+            LvDatos = listado;
         }
 
         private async void GetCoordsEvent()

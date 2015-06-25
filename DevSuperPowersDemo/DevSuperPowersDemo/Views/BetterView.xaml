@@ -4,15 +4,32 @@
              xmlns:viewModels="clr-namespace:DevSuperPowersDemo.ViewModels;assembly=DevSuperPowersDemo"
              x:Class="DevSuperPowersDemo.Views.BetterView"
              Title="Better">
+  
   <ContentPage.BindingContext>
     <viewModels:BetterViewModel/>
   </ContentPage.BindingContext>
   
-  <StackLayout VerticalOptions="Center">
-    <Label Text="{Binding GetCoordsLabel}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="Get coords" Command="{Binding GetCoords}"/>
+  <StackLayout VerticalOptions="Start">
     
-    <Label Text="{Binding GetAdressLabel}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="Get Direction" Command="{Binding GetAdress}"/>
+    <Label Text="{Binding GetCoordsLabel}" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" />
+    
+    <Button Text="Get coords" 
+            Command="{Binding GetCoords}"/>
+    
+    <Label Text="{Binding GetAdressLabel}" 
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" />
+    
+    <Button Text="Get Direction" 
+            Command="{Binding GetAdress}"/>
+
+    <ListView ItemsSource="{Binding LvDatos}"
+              HeightRequest="100"/>
+
+    <Button Text="Rellenar lista"
+            Command="{Binding Rellenador}" />
+    
   </StackLayout>
 </ContentPage>

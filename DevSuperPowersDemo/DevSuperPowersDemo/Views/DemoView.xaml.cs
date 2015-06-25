@@ -20,9 +20,9 @@ namespace DevSuperPowersDemo.Views
             Coor = new Coordenadas();
         }
 
-        private void GetDir_OnClicked(object sender, EventArgs e)
+        private async void GetDir_OnClicked(object sender, EventArgs e)
         {
-            Coor.GetDireccion(MyAdress.Text, MyMap);
+            await Coor.GetDireccion(MyAdress.Text, MyMap);
         }
     }
 }
