@@ -5,87 +5,64 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DevSuperPowersDemo.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace DevSuperPowersDemo.ViewModels
 {
     public class BetterViewModel : INotifyPropertyChanged
     {
-        private string _greeting;
-        private int _widgetCount;
-        private bool _isBusy;
+        private string _GetCoordsLabel;
+        private string _AdressLabel;
+        //private Map _mapa;
+        Coordenadas Coords;
 
-        public string Greeting
+        // Declaro los entry como getters y setters para poder modificarlos       
+        public string MyAdress { get; set; }        
+
+        public string GetCoordsLabel
         {
-            get { return _greeting; }
+            get { return _GetCoordsLabel; }
             set
             {
-                _greeting = value;
-                OnPropertyChanged("Greeting");
+                _GetCoordsLabel = value;
+                OnPropertyChanged("GetCoordsLabel");
             }
         }
 
-        public string Name { get; set; }
-
-        public int WidgetCount
+        public string AdressLabel
         {
-            get { return _widgetCount; }
+            get { return _AdressLabel; }
             set
             {
-                _widgetCount = value;
-                OnPropertyChanged("WidgetCount");
+                _AdressLabel = value;
+                OnPropertyChanged("AdressLabel");
             }
         }
 
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set
-            {
-                _isBusy = value;
-                OnPropertyChanged("IsBusy");
-                OnPropertyChanged("NotIsBusy");
-            }
-        }
-
-        public bool NotIsBusy
-        {
-            get { return !IsBusy; }
-        }
-
-        public ObservableCollection<Animal> Animals { get; set; }
-
-        public ICommand SayHelloCommand { get; set; }
-        public ICommand CreateWidgetCommand { get; set; }
+        public ICommand GetCoords { get; set; }
+        //public ICommand ShowAdress { get; set; } 
 
         public BetterViewModel()
-        {
-            Greeting = "Welcome to Xamarin Forms from MVVM!";
-            Name = "enter name";
-            Animals = new ObservableCollection<Animal>
-            {
-                new Animal{Name = "Fluffy", Age = 2, Color = "White"},
-                new Animal{Name = "Spot", Age = 4, Color = "Black & White"},
-                new Animal{Name = "Rex", Age = 6, Color = "Red"}
-            };
+        {            
+            Coords = new Coordenadas();
+            MyAdress = "Enter your adress here";
+           // MyMap = new Map();
 
-            SayHelloCommand = new Command(SayHello);
-            CreateWidgetCommand = new Command(CreateWidget);
+            GetCoords = new Command(GetCoordsEvent);
+            //ShowAdress = new Command(GetandShowAdress);
         }
 
-        private async void CreateWidget()
+        private async void GetCoordsEvent()
         {
-            // Create a widget. By calling the backend Widget web service
-            IsBusy = true;
-            await Task.Delay(2000);
-
-            WidgetCount += 1;
-            IsBusy = false;
+            var rta = await Coords.GetCoordenadas();
+            GetCoordsLabel = "You're on " + rta;
         }
 
-        public void SayHello()
-        {
-            Greeting = "Hello " + Name;
-        }
+        //private async void GetandShowAdress()
+        //{
+        //    await Coords.GetDireccion(MyAdress.ToString(), MyMap);
+        //    AdressLabel = "You're looking for ";
+        //}
 
         #region INPC
         public void OnPropertyChanged(string propertyName)

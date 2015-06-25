@@ -2,10 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DevSuperPowersDemo.Views.DemoView"
+             xmlns:viewModels="clr-namespace:DevSuperPowersDemo.ViewModels;assembly=DevSuperPowersDemo"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              Title="Original">
+<ContentPage.BindingContext>
+  <viewModels:BetterViewModel/>
+</ContentPage.BindingContext>
   <StackLayout VerticalOptions="Center">
-    <Label x:Name="GreetingLabel" Text="Welcome to Xamarin Forms from XAML!" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Entry x:Name="NameEntry" Text="enter your name"/>
-    <Button Text="Say hello" Clicked="SayHellloButton_OnClicked"/>
+    <maps:Map WidthRequest="320" HeightRequest="200"
+    x:Name="MyMap"
+    IsShowingUser="true"
+    MapType="Hybrid"
+        />
+    <Label Text="{Binding AdressLabel}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Entry x:Name="MyAdress" Text="{Binding MyAdress}"/>
+    <Button Text="Pin direction" Clicked="GetDir_OnClicked"/>
   </StackLayout>
 </ContentPage>
