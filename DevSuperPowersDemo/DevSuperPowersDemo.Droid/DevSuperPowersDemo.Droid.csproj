@@ -75,6 +75,7 @@
       <HintPath>..\..\packages\Xamarin.GooglePlayServices.22.0.0.0\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,8 +95,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Xamarin.Forms.1.4.2.6359\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Labs">
-      <HintPath>..\..\packages\Xamarin.Forms.Labs.1.0.1.5\lib\portable-net45+win+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Labs.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Labs, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.1.2.0-pre3\lib\MonoAndroid\Xamarin.Forms.Labs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Labs.Droid, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.Labs.1.2.0-pre3\lib\MonoAndroid\Xamarin.Forms.Labs.Droid.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\..\packages\Xamarin.Forms.Maps.1.4.2.6359\lib\MonoAndroid10\Xamarin.Forms.Maps.dll</HintPath>

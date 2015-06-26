@@ -6,5 +6,6 @@
   <TabbedPage.Children>
     <views:DemoView/>
     <views:BetterView/>
+    <views:DistanciasPage/>
   </TabbedPage.Children>
 </TabbedPage>
